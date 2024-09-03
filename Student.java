@@ -10,6 +10,7 @@ public class Student {
         this.grade = grade;
         this.age = age;
     }
+
     public String getName() {
         return name;
     }
@@ -24,6 +25,16 @@ public class Student {
 
     public int getAge() {
         return age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ",id=" + id +
+                ", grade=" + grade +
+                ", age=" + age +
+                '}';
     }
 }
 

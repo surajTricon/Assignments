@@ -1,16 +1,26 @@
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.function.Function;
 public class StudentSorting {
-    public static <T> void sortStudents(ArrayList<Student> students, Comparator<T> comparator) {
+    public static <T> void sortStudents(ArrayList<Student> students, Comparator<T> comparator, Function<Student, T> getter) {
+        Collections.sort(students, new StudentComparator<>(comparator, getter));
     }
-    public static void main(String[] args) {
-            ArrayList<Student> students = new ArrayList<>();
-            students.add(new Student("Suraj", 1, D, 20));
-            students.add(new Student("Rahul", 2, B, 22));
-            students.add(new Student("Surya", 3, A, 21));
-        students.add(new Student("aman", 4, A, 21));
 
+    private static class StudentComparator<T> implements Comparator<Student> {
+        private Comparator<T> comparator;
+        private Function<Student, T> getter;
 
+        public StudentComparator(Comparator<T> comparator, Function<Student, T> getter) {
+            this.comparator = comparator;
+            this.getter = getter;
+        }
+
+        @Override
+        public int compare(Student s1, Student s2) {
+            T value1 = getter.apply(s1);
+            T value2 = getter.apply(s2);
+            return comparator.compare(value1, value2);
+        }
     }
-}
-
+    }
