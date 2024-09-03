@@ -8,6 +8,7 @@ public class StudentSorting {
             students.add(new Student("Suraj", 1, D, 20));
             students.add(new Student("Rahul", 2, B, 22));
             students.add(new Student("Surya", 3, A, 21));
+        students.add(new Student("aman", 4, A, 21));
 
 
     }
